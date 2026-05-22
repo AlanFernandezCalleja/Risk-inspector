@@ -17,8 +17,8 @@ export const Sidebar = () => {
       <div className="px-4 py-6">
         {/* Logo */}
         <div className="flex items-center gap-2 px-2 mb-8">
-          <div className="h-8 w-8 bg-emerald-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">SG</div>
-          <span className="font-bold text-gray-800 text-lg">GTI Risk</span>
+          <div className="h-8 w-8 bg-emerald-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">RI</div>
+          <span className="font-bold text-gray-800 text-lg">Risk Inspector</span>
         </div>
 
         {/* Menú Principal */}

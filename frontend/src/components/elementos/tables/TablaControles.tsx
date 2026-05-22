@@ -1,4 +1,9 @@
-// TODO: Tabla de Controles
+// CHECK: Tabla de Controles
+// TODO: Mejorar apariencia
+// TODO: Mejorar logica en cada una de las columnas
+// TDOO: Agregar columna de acciones de Editar / Elliminar
+
+
 import type { Columna } from "./TablaGenérica";
 import { TablaGenerica } from "./TablaGenérica";
 // CONTROL: Estos son los datos que debe tener cada control

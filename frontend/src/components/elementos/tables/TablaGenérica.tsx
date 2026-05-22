@@ -1,6 +1,6 @@
+// Tabla Generica para ser reutilizada
 
-
-// 1. Definimos la estructura de cada columna usando el genérico T
+// Estructura de cada columna usando el genérico T
 export interface Columna<T> {
   encabezado: string;
   clave?: keyof T; // 'keyof T' asegura que la clave exista obligatoriamente en el objeto
@@ -8,11 +8,11 @@ export interface Columna<T> {
 }
 
 
-// 2. Definimos las Props de la tabla
+// Interfaz de la tabla
 export interface TablaGenericaProps<T> {
   columnas: Columna<T>[];
   datos: T[];
-//   _className?: String; 
+//   _className?: String; al final no lo necesitaba
 }
 export const TablaGenerica = <T,>({ columnas, datos}: TablaGenericaProps<T>) =>{
   // Manejo de caso borde: si no hay datos
