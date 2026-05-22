@@ -12,14 +12,14 @@ export const Dashboard = () => {
   // Datos de ejemplo basados en tu lógica de Activos -> Amenazas cubiertas
   const datosDashboard = {
     tituloGeneral: "Cobertura Global de Riesgos",
-    totalAmenazasGlobal: 10+7+8,
+    totalAmenazasGlobal: 8+6+8+6+4,
     amenazasCubiertasGlobal: 8+6+8 , // 19 de 25 (~76%)
     
     // Desglose por activos individuales
     activos: [
-      { id: 1, nombre: "Base de Datos Clientes", cubiertas: 8, total: 10 },
-      { id: 2, nombre: "Servidor Web Principal", cubiertas: 6, total: 7 },
-      { id: 3, nombre: "ERP Financiero", cubiertas: 5, total: 8 },
+      { id: 1, nombre: "Base de datos en Supabase", cubiertas: 8, total: 10 },
+      { id: 2, nombre: "Aplicación web Glucotracker", cubiertas: 6, total: 7 },
+      { id: 3, nombre: "Registro Pacientes Glucotracker", cubiertas: 5, total: 8 },
     ]
   };
 

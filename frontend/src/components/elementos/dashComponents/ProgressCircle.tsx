@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface ProgressCircleProps {
   titulo: string;
   cubiertos: number;
@@ -66,7 +64,7 @@ export const ProgressCircle = ({ titulo, cubiertos, total, subtitulo }: Progress
       {/* Leyenda inferior */}
       <div className="mt-6 flex items-center gap-2 text-sm text-gray-600 bg-gray-50 px-4 py-2 rounded-full">
         <span className={`h-2.5 w-2.5 rounded-full ${colorAnillo.replace('text-', 'bg-')}`} />
-        <span>{porcentaje >= 80 ? 'Cobertura Óptima' : porcentaje >= 50 ? 'Cobertura Regular' : 'Cobertura Crítica'}</span>
+        <span>{porcentaje >= 80 ? 'Empresa Segura' : porcentaje >= 50 ? 'Seguridad Regular' : 'Empresa en Riesgo'}</span>
       </div>
     </div>
   );
