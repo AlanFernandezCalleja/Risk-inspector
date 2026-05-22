@@ -1,0 +1,52 @@
+// src/routes/router.tsx
+import { createBrowserRouter, Navigate } from 'react-router-dom';
+import App from '../App';
+
+// Importacion de componentes 
+import { Dashboard } from '../components/pages/dashboard/Dashboard';
+
+
+
+
+import { TablaAmenaza } from '../components/elementos/tables/TablaAmenaza';
+import { TablaControles } from '../components/elementos/tables/TablaControles';
+
+// 2. Definición de la estructura de navegación
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />, 
+    children: [
+      {
+        index: true,
+        element: <Navigate to="/dashboard/general" replace />
+      },
+      {
+        path: "dashboard",
+        children: [
+          { index: true, element: <Navigate to="general" replace /> },
+          { path: "general", element: <Dashboard /> },
+          { path: "estadisticas", element: <div>Estadisticas</div> }
+        ]
+      },
+      {
+        path: "tablas",
+        children: [
+          { index: true, element: <Navigate to="amenazas" replace /> },
+          { path: "amenazas", element: <TablaAmenaza /> },
+          { path: "controles", element: <TablaControles /> },
+          { path: "activos", element: <div>Tabla de activos</div> },
+          { path: "analisis-riesgo", element: <div>Tabla completa de analisis de riesgos</div> }
+        ]
+      },
+      {
+        path: "mapas-calor",
+        element: <div>Mapa de calor</div>
+      },
+      {
+        path: "configuracion",
+        element: <div>Configuración</div>
+      }
+    ]
+  }
+]);
