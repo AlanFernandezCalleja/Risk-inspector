@@ -56,7 +56,7 @@ export const ProgressCircle = ({ titulo, cubiertos, total, subtitulo }: Progress
         <div className="absolute flex flex-col items-center justify-center text-center">
           <span className="text-3xl font-extrabold text-gray-800">{porcentaje}%</span>
           <span className="text-xs font-medium text-gray-500 mt-0.5">
-            {cubiertos} / {total} Controles
+            {cubiertos} / {total} Amenazas Controladas
           </span>
         </div>
       </div>

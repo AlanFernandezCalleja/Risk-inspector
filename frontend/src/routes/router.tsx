@@ -12,6 +12,7 @@ import { TablaAmenaza } from '../components/elementos/tables/TablaAmenaza';
 import { TablaControles } from '../components/elementos/tables/TablaControles';
 import { TablaActivos } from '../components/elementos/tables/TablaActivos';
 import { MatricesRiesgo } from '../components/pages/dashboard/MatricesRiesgo';
+import { TablaCompletaRiesgos } from '../components/elementos/tables/TablaCompletaRiesgos';
 
 // 2. Definición de la estructura de navegación
 export const router = createBrowserRouter([
@@ -38,7 +39,7 @@ export const router = createBrowserRouter([
           { path: "amenazas", element: <TablaAmenaza /> },
           { path: "controles", element: <TablaControles /> },
           { path: "activos", element: <TablaActivos/> },
-          { path: "analisis-riesgo", element: <div>Tabla completa de analisis de riesgos</div> }
+          { path: "analisis-riesgo", element: <TablaCompletaRiesgos/> }
         ]
       },
       {

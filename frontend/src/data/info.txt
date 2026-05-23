@@ -1,0 +1,5 @@
+En esta carpeta hay Mocks y elementos de prueba, nada de lo que esta en esta carpeta puede estar en producción
+
+Todos los archivos en esta carpeta no sirven para nada
+Se pueden borrar o eliminar 
+uno puede crear información hardcode para hacer pruebas en esta carpeta
