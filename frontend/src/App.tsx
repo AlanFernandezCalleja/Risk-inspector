@@ -1,4 +1,4 @@
-import './App.css'
+
 import { Outlet, useLocation } from 'react-router-dom';
 import { Sidebar } from './components/elementos/navigation/Sidebar';
 import { NavbarDashboard } from './components/elementos/navigation/NavbarDashboard';
@@ -10,7 +10,7 @@ function App() {
   
 
   return (
-    <div className="flex h-screen w-screen bg-gray-50 overflow-hidden">
+    <div className="flex h-screen w-screen bg-gray-100 overflow-hidden">
       
       {/* Sidebar Componente */}
       <Sidebar />

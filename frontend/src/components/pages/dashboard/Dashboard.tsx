@@ -12,7 +12,7 @@ export const Dashboard = () => {
   // Datos de ejemplo basados en tu lógica de Activos -> Amenazas cubiertas
   const datosDashboard = {
     tituloGeneral: "Cobertura Global de Riesgos",
-    totalAmenazasGlobal: 8+6+8+6+4,
+    totalAmenazasGlobal: 8+6+8+6+4+20,
     amenazasCubiertasGlobal: 8+6+8 , // 19 de 25 (~76%)
     
     // Desglose por activos individuales

@@ -8,17 +8,17 @@ export const Sidebar = () => {
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
       isActive 
-        ? 'bg-emerald-50 text-emerald-700' 
-        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+        ? 'bg-cyan-200 text-sky-800' 
+        : 'text-gray-100 hover:bg-cyan-100/90 hover:text-teal-900'
     }`;
 
   return (
-    <aside className="w-64 bg-green-200 border-r border-gray-200 flex flex-col justify-between h-full">
+    <aside className="w-64 bg-cyan-800 border-r border-gray-200 flex flex-col justify-between h-full">
       <div className="px-4 py-6">
         {/* Logo */}
         <div className="flex items-center gap-2 px-2 mb-8">
-          <div className="h-8 w-8 bg-emerald-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">RI</div>
-          <span className="font-bold text-gray-800 text-lg">Risk Inspector</span>
+          <div className="h-8 w-8 bg-slate-100 rounded-lg flex items-center justify-center text-teal-700 font-extrabold text-sm">RI</div>
+          <span className="font-bold text-gray-100 text-lg">Risk Inspector</span>
         </div>
 
         {/* Menú Principal */}
@@ -30,8 +30,8 @@ export const Sidebar = () => {
         </nav>
       </div>
       
-      <div className="p-4 border-t border-gray-200 text-xs text-gray-400">
-        v1.0.0 — Proyecto Activos
+      <div className="p-4 border-t border-cyan-400 text-xs text-cyan-300">
+        v1.0.0 — Risk Inspector
       </div>
     </aside>
   );

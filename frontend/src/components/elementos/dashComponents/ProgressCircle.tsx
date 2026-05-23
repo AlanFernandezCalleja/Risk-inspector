@@ -10,7 +10,7 @@ export const ProgressCircle = ({ titulo, cubiertos, total, subtitulo }: Progress
   const porcentaje = total > 0 ? Math.round((cubiertos / total) * 100) : 0;
   
   // Configuración del SVG para el anillo de progreso
-  const radio = 50;
+  const radio = 60;
   const circunferencia = 2 * Math.PI * radio; // Aproximadamente 314.16
   const strokeDashoffset = circunferencia - (porcentaje / 100) * circunferencia;
 
