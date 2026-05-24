@@ -1,6 +1,6 @@
 import type { Columna } from "./TablaGenérica";
 import { TablaGenerica } from "./TablaGenérica";
-import { type AmenazaData } from "../../models/AmenazaData";
+import type {  AmenazaData } from "../../models/AmenazaData";
 
 //información de prueba
 import {datosAmenazas} from '../../../data/amenazas'
@@ -15,7 +15,12 @@ export const TablaAmenaza = () => {
     // Estructura de la tabla amenaza 
   const columnaAmenazas: Columna<AmenazaData>[] = [
     { encabezado: "ID", clave: "id" },
-    { encabezado: "ACTIVO", clave: "activo" },
+    { encabezado: "ACTIVO", clave: "activo" , render:(amenaza)=>{
+      return <>
+        <div className="font-medium text-slate-800">{amenaza.activo.nombre}</div>
+        <div className="text-sm text-slate-400 mt-0.5">{amenaza.activo.descripcionActivo}</div>
+      </>
+    }},
     { encabezado: "AMENAZA", clave: "amenaza", render: (amenaza)=>{
         return <>
             <div className="font-medium text-slate-800">{amenaza.amenaza}</div>

@@ -1,6 +1,9 @@
+import { type ActivoData } from "./ActivoData";
+
+
 export interface AmenazaData {
   id: number;
-  activo: string;
+  activo: ActivoData;
   amenaza: string;
   descripcionAmenaza?: string;
   consecuencia: string;
