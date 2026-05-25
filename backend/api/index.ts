@@ -4,9 +4,9 @@ dotenv.config();
 
 import express from 'express';
 import cors from 'cors'; // <-- 1. IMPORTAR CORS
-import rutasActivos from '../src/routes/routes'; 
+import rutasActivos from '../src/routes/routes.js'; 
 
-const app = express();
+const app = express();  
 const port = process.env.PORT || 3000;
 
 app.use(cors()); // <-- 2. ACTIVAR CORS (Permite que tu frontend se conecte)
