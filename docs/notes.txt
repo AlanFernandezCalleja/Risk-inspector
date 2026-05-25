@@ -1,0 +1,78 @@
+Estructura de la base de datos inicial:
+-- 1. Catálogo de Frecuencias
+CREATE TABLE frecuencias (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL UNIQUE -- 'Diario', 'Semanal', 'Mensual', 'Trimestral'
+);
+
+-- 2. Catálogo de Tipos de Control
+CREATE TABLE tipos_control (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL UNIQUE -- 'Técnico', 'Organizativo', 'Legal'
+);
+
+-- 3. Catálogo de Niveles de Control
+CREATE TABLE niveles_control (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL UNIQUE -- 'Preventivo', 'Detectivo', 'Correctivo'
+);
+
+-- 4. Catálogo de Prioridades de Activos
+CREATE TABLE prioridades (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL UNIQUE, -- 'Baja', 'Media', 'Alta', 'Crítica'
+    nivel_peso INT NOT NULL -- Para poder ordenar de menor a mayor prioridad de forma matemática
+);
+
+-- 5. Tabla de Activos
+CREATE TABLE activos (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    descripcion_activo TEXT,
+    prioridad_id INT REFERENCES prioridades(id) ON DELETE RESTRICT
+);
+
+-- 6. Tabla de Amenazas
+CREATE TABLE amenazas (
+    id SERIAL PRIMARY KEY,
+    activo_id INT REFERENCES activos(id) ON DELETE CASCADE, -- Si se borra el activo, se borran sus amenazas
+    amenaza VARCHAR(255) NOT NULL,
+    descripcion_amenaza TEXT,
+    consecuencia TEXT NOT NULL,
+    descripcion_consecuencia TEXT,
+    probabilidad INT NOT NULL CHECK (probabilidad BETWEEN 1 AND 5), -- Validación de rango
+    impacto INT NOT NULL CHECK (impacto BETWEEN 1 AND 5)
+    -- El riesgo se calcula en las consultas (probabilidad * impacto)
+);
+
+-- 7. Tabla de Controles
+CREATE TABLE controles (
+    id SERIAL PRIMARY KEY,
+    control VARCHAR(255) NOT NULL, -- Ej: 'Cifrado AES-256'
+    descripcion_control TEXT,
+    tipo_id INT REFERENCES tipos_control(id) ON DELETE RESTRICT,
+    nivel_id INT REFERENCES niveles_control(id) ON DELETE RESTRICT,
+    frecuencia_id INT REFERENCES frecuencias(id) ON DELETE RESTRICT
+);
+
+
+
+Forma de llamar cada tabla:
+export interface ControlBackendData {
+  id: number;
+  control: string;
+  descripcionControl: string;
+  tipo: { id: number; nombre: string };       // Objeto en vez de string libre
+  nivel: { id: number; nombre: string };      // Objeto en vez de string libre
+  frecuencia: { id: number; nombre: string }; // Objeto en vez de string libre
+}
+
+// VERCEL:
+¿Qué pasará cuando subas el backend a Vercel?
+Cuando tu backend esté desplegado en Vercel, te darán una URL de producción (por ejemplo: https://risk-inspector-api.vercel.app).
+
+Para que tu frontend se conecte a esa nueva URL en producción, ya no tendrás que tocar ni una sola línea de código. Solo tendrás que ir al panel de configuración de tu Frontend (ya sea en Vercel, Netlify o donde lo vayas a subir), entrar a la sección de Environment Variables y agregar:
+
+Key: VITE_API_URL
+
+Value: https://risk-inspector-api.vercel.app
