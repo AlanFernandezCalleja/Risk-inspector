@@ -4,7 +4,7 @@ dotenv.config();
 
 import express from 'express';
 import cors from 'cors'; // <-- 1. IMPORTAR CORS
-import rutasActivos from '../src/routes/routes.js'; 
+import rutasActivos from './src/routes/routes.js'; 
 
 const app = express();  
 const port = process.env.PORT || 3000;
