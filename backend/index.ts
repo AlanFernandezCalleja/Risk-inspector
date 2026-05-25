@@ -16,3 +16,6 @@ app.use('/', rutasActivos);
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });
+
+
+export default app;
