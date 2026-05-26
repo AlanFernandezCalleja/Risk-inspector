@@ -22,6 +22,9 @@ export const useActivos = () => {
   const [cargando, setCargando] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  const [refrescarToken, setRefrescarToken] = useState(0);
+  const recargar = () => setRefrescarToken(prev => prev + 1);
+
   useEffect(() => {
     const cargarActivos = async () => {
       try {
@@ -46,5 +49,5 @@ export const useActivos = () => {
   }, []);
 
   // Exponemos solo lo que el componente visual necesita consumir
-  return { activos, cargando, error };
+  return { activos, cargando, error, recargar };
 };

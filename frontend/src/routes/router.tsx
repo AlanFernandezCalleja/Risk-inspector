@@ -10,6 +10,7 @@ import { TablaControles } from '../components/tables/TablaControles';
 import { TablaActivos } from '../components/tables/TablaActivos';
 import { TablaCompletaRiesgos } from '../components/tables/TablaCompletaRiesgos';
 import { MatricesRiesgo } from '../pages/MatricesRiesgo';
+import { TablasPagina } from '../pages/TablasPagina';
 
 // 2. Definición de la estructura de navegación
 export const router = createBrowserRouter([
@@ -31,6 +32,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "tablas",
+        element:<TablasPagina/>,
         children: [
           { index: true, element: <Navigate to="amenazas" replace /> },
           { path: "amenazas", element: <TablaAmenaza /> },

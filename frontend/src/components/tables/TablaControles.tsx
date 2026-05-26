@@ -47,7 +47,7 @@ export const TablaControles = () => {
 
   return (
     <div>
-      <h2 className="text-3xl font-bold text-gray-800 mb-4">Controles </h2>
+      
       <Boton variante="primary" tamano="md" icono={<Plus size={16} />} onClick={() => alert('Crear')}>
         Crear Nuevo Control
       </Boton>

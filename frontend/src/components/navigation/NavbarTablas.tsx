@@ -1,5 +1,5 @@
-// El navbar personalizado para la página de Tablas
-// frontend/src/components/elementos/navigation/NavbarTablas.tsx
+
+// Archivo de : src/components/navigation/NavbarTablas.tsx
 import { NavLink } from 'react-router-dom';
 
 export const NavbarTablas = () => {

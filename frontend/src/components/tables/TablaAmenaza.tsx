@@ -63,9 +63,6 @@ export const TablaAmenaza = () => {
 
   return (
     <div className="min-w-5xl">
-      <h2 className="text-3xl font-bold text-gray-800 mb-4">
-        Amenazas y Consecuencias
-      </h2>
       <Boton
         variante="primary"
         icono={<Plus size={16} />}
