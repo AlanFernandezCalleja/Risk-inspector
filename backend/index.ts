@@ -1,21 +1,32 @@
-// index.ts (En tu BACKEND)
+// index.ts
+import express from 'express';
+import cors from 'cors';
 import dotenv from 'dotenv';
+import { errorHandler } from './src/middlewares/errorHandler.js';
+import rutasActivos from './src/routes/activos.routes.js';
+import rutasPrioridades from './src/routes/prioridades.routes.js';
+import rutasRiesgos from './src/routes/riesgos.routes.js';
 dotenv.config();
 
-import express from 'express';
-import cors from 'cors'; // <-- 1. IMPORTAR CORS
-import rutasActivos from './src/routes/routes.js'; 
-
-const app = express();  
+const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors()); // <-- 2. ACTIVAR CORS (Permite que tu frontend se conecte)
+app.use(cors());
 app.use(express.json());
-app.use('/', rutasActivos); 
 
-app.listen(port, () => {
-  console.log(`Servidor corriendo en http://localhost:${port}`);
-});
+// Endpoints agrupados y limpios
+app.use(rutasActivos);
+app.use(rutasPrioridades);
+app.use(rutasRiesgos)
 
+// El manejador de errores siempre debe ir al final
+app.use(errorHandler);
+
+if (process.env.NODE_ENV !== 'production') {
+  app.use(errorHandler);
+  app.listen(port, () => {
+    console.log(`Servidor corriendo en http://localhost:${port}`);
+  });
+}
 
 export default app;
