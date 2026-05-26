@@ -3,16 +3,13 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 import App from '../App';
 
 // Importacion de componentes 
-import { Dashboard } from '../components/pages/dashboard/Dashboard';
 
-
-
-
-import { TablaAmenaza } from '../components/elementos/tables/TablaAmenaza';
-import { TablaControles } from '../components/elementos/tables/TablaControles';
-import { TablaActivos } from '../components/elementos/tables/TablaActivos';
-import { MatricesRiesgo } from '../components/pages/dashboard/MatricesRiesgo';
-import { TablaCompletaRiesgos } from '../components/elementos/tables/TablaCompletaRiesgos';
+import Dashboard from '../pages/Dashboard';
+import { TablaAmenaza } from '../components/tables/TablaAmenaza';
+import { TablaControles } from '../components/tables/TablaControles';
+import { TablaActivos } from '../components/tables/TablaActivos';
+import { TablaCompletaRiesgos } from '../components/tables/TablaCompletaRiesgos';
+import { MatricesRiesgo } from '../pages/MatricesRiesgo';
 
 // 2. Definición de la estructura de navegación
 export const router = createBrowserRouter([

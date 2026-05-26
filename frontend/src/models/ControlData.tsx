@@ -3,7 +3,7 @@
 export interface ControlData {
   id: number;
   control: string;
-  descripcionControl: string;
+  descripcion_control: string;
   tipo: string;
   nivel: string;
   frecuencia: string;

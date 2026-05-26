@@ -6,7 +6,7 @@
 // SEMI CHECK:  Barra porcentaje de Amenazas cubiertas
 // TODO: Reportes Amenazas realizados este mes
 
-import { ProgressCircle } from '../../elementos/dashComponents/ProgressCircle';
+import { ProgressCircle } from "../components/dashComponents/ProgressCircle";
 
 export const Dashboard = () => {
   // Datos de ejemplo basados en tu lógica de Activos -> Amenazas cubiertas

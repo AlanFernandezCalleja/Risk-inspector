@@ -6,7 +6,7 @@ export const NavbarTablas = () => {
   const subLinkClass = ({ isActive }: { isActive: boolean }) =>
     `pb-3 text-sm font-medium border-b-2 transition-all ${
       isActive
-        ? 'border-emerald-600 text-emerald-600 font-bold'
+        ? 'border-Teal-500 text-emerald-600 font-bold'
         : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
     }`;
 

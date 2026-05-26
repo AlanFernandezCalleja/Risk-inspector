@@ -3,9 +3,12 @@
 
 import { TablaGenerica, type Columna } from "./TablaGenérica";
 import { type ActivoData } from "../../models/ActivoData";
-
+import { Plus } from "lucide-react";
 
 import { useActivos } from "../../hooks/useActivos";
+import { LabelPrioridad } from "../ui/LabelPrioridad";
+import { Boton } from "../ui/Boton";
+import { LabelButtons } from "../ui/LabelButtons";
 //      id: string;
 //     nombre: string;
 //     descripcionActivo?:string;
@@ -13,23 +16,25 @@ import { useActivos } from "../../hooks/useActivos";
 const columnaActivos: Columna<ActivoData>[] = [
   { encabezado: "ID", clave: "id" },
   { encabezado: "Nombre Activo", clave: "nombre" },
-  { encabezado: "Descripción", clave: "descripcionActivo" },
+  { encabezado: "Descripción", clave: "descripcion_activo" },
   {
     encabezado: "prioridad",
     clave: "prioridad",
-    render: (activo) => {
-      return (
-        <>
-          <div className="font-medium text-slate-800">
-            {activo.prioridad.nombre}
-          </div>
-          <div className="text-sm text-center text-slate-400 mt-0.5">
-            {activo.prioridad.nivelPeso}
-          </div>
-        </>
-      );
-    },
+    render: (a) => <LabelPrioridad nivel={a.prioridad?.nivel_peso || 0} nombre={a.prioridad?.nombre || 'Sin Prioridad'}></LabelPrioridad>,
   },
+  {
+        encabezado: "ACCIONES",
+        render: () => {
+          return (
+            <LabelButtons
+              accion1={() => alert("editar")}
+              accion2={() => alert("eliminar")}
+              text1="Editar"
+              text2="Eliminar"
+            />
+          );
+        },
+      }
 ];
 
 export const TablaActivos = () => {
@@ -53,6 +58,9 @@ export const TablaActivos = () => {
       <h2 className="text-3xl font-bold text-gray-800 mb-4">
         Activos de Información
       </h2>
+      <Boton variante="primary" tamano="md" icono={<Plus size={16} />} onClick={() => alert('Crear')}>
+        Crear Nuevo Activo
+      </Boton>
       <TablaGenerica
         columnas={columnaActivos}
         datos={activos}

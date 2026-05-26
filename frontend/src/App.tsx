@@ -1,8 +1,8 @@
 
 import { Outlet, useLocation } from 'react-router-dom';
-import { Sidebar } from './components/elementos/navigation/Sidebar';
-import { NavbarDashboard } from './components/elementos/navigation/NavbarDashboard';
-import { NavbarTablas } from './components/elementos/navigation/NavbarTablas';
+import { Sidebar } from './components/navigation/Sidebar';
+import { NavbarDashboard } from './components/navigation/NavbarDashboard';
+import { NavbarTablas } from './components/navigation/NavbarTablas';
 
 function App() {
   const location = useLocation();

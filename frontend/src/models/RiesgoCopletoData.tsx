@@ -7,9 +7,9 @@ export interface RiesgoCompletoData {
   idRiesgo: number;
   aplicacion: ActivoData;
   amenaza: AmenazaData;
-  nivelRiesgo: string;
-  tratamientoRiesgo: string;
-  controles: ControlData[];
+  nivelRiesgo: string; 
+  tratamientoRiesgo: string; 
+  controles: ControlData[]; 
   probabilidadResidual: number;
   impactoResidual: number;
   riesgoResidual: number;

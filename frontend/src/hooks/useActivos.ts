@@ -1,7 +1,7 @@
 // src/components/hooks/useActivos.ts
 // Archivo para hacer peticion de los activos
 import { useState, useEffect } from "react";
-import { type ActivoData } from "../../components/models/ActivoData";
+import { type ActivoData } from "../models/ActivoData";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
@@ -9,11 +9,11 @@ const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 const mapearActivoDesdeBackend = (item: any): ActivoData => ({
   id: item.id,
   nombre: item.nombre,
-  descripcionActivo: item.descripcion_activo,
+  descripcion_activo: item.descripcion_activo,
   prioridad: {
     id: item.prioridad_id?.id,
     nombre: item.prioridad_id?.nombre,
-    nivelPeso: item.prioridad_id?.nivel_peso,
+    nivel_peso: item.prioridad_id?.nivel_peso,
   },
 });
 
@@ -26,7 +26,7 @@ export const useActivos = () => {
     const cargarActivos = async () => {
       try {
         setCargando(true);
-        const respuesta = await fetch(`${API_URL}/activos`);
+        const respuesta = await fetch(`${API_URL}/activos/todos`);
         
         if (!respuesta.ok) {
           throw new Error("No se pudo obtener la información del servidor");

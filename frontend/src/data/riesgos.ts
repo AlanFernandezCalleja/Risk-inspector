@@ -1,4 +1,4 @@
-import { type RiesgoCompletoData } from "../components/models/RiesgoCopletoData";
+import { type RiesgoCompletoData } from "../models/RiesgoCopletoData";
 import { datosActivos } from "./activos";
 import { datosAmenazas } from "./amenazas";
 import { datosControles } from "./controls";
