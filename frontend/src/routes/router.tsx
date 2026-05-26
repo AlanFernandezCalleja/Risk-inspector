@@ -10,9 +10,15 @@ import { TablaControles } from '../components/tables/TablaControles';
 import { TablaActivos } from '../components/tables/TablaActivos';
 import { TablaCompletaRiesgos } from '../components/tables/TablaCompletaRiesgos';
 import { MatricesRiesgo } from '../pages/MatricesRiesgo';
+import { Login } from '../pages/Login';
+
 
 // 2. Definición de la estructura de navegación
 export const router = createBrowserRouter([
+  {
+    path: "/login",
+    element: <Login />
+  },
   {
     path: "/",
     element: <App />, 

@@ -1,13 +1,17 @@
 
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, Navigate } from 'react-router-dom';
 import { Sidebar } from './components/navigation/Sidebar';
 import { NavbarDashboard } from './components/navigation/NavbarDashboard';
 import { NavbarTablas } from './components/navigation/NavbarTablas';
 
 function App() {
   const location = useLocation();
+  const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
 
-  
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace state={{ from: location }} />;
+  }
+
 
   return (
     <div className="flex h-screen w-screen bg-gray-100 overflow-hidden">
