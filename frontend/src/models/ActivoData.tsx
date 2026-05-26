@@ -1,4 +1,4 @@
-
+// Archivo src/models/ActivoData
 export interface PrioridadData{
     id: number,
     nombre: string,

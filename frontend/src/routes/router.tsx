@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
           { index: true, element: <Navigate to="amenazas" replace /> },
           { path: "amenazas", element: <TablaAmenaza /> },
           { path: "controles", element: <TablaControles /> },
-          { path: "activos", element: <TablaActivos/> },
+          { path: "activos", element: <TablaActivos /> },
           { path: "analisis-riesgo", element: <TablaCompletaRiesgos/> }
         ]
       },

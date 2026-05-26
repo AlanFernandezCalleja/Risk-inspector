@@ -1,3 +1,4 @@
+// Archivo src/hooks/usePrioridades.tsx
 import { useState, useEffect } from "react";
 import { type PrioridadData } from "../models/ActivoData";
 
