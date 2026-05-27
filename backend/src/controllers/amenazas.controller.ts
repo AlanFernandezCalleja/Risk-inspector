@@ -1,7 +1,7 @@
 // Archivo src/controllers/amenazas.controller.ts
 
 import { Request, Response, NextFunction } from 'express';
-import { AmenazasService } from '../services/amenazas.service';
+import { AmenazasService } from '../services/amenazas.service.js';
 
 
 export const AmenazasController = {
