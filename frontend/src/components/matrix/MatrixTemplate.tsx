@@ -1,92 +1,110 @@
+// src/components/elementos/matrix/MatrixTemplate.tsx
 import { Fragment } from "react/jsx-runtime";
 
-// src/components/elementos/matrix/MatrixTemplate.tsx
 interface MatrixTemplateProps {
-  probabilidadSeleccionada?: number; // Valor del 1 al 5
-  impactoSeleccionado?: number;       // Valor del 1 al 5
-  nombreAmenaza?: string;             // Opcional, para mostrar un título contextual
+  probInh?: number; // Probabilidad Inherente
+  impInh?: number;  // Impacto Inherente
+  probRes?: number; // Probabilidad Residual
+  impRes?: number;  // Impacto Residual
+  nombreAmenaza?: string;
 }
 
 export const MatrixTemplate = ({ 
-  probabilidadSeleccionada, 
-  impactoSeleccionado,
+  probInh, 
+  impInh,
+  probRes,
+  impRes,
   nombreAmenaza 
 }: MatrixTemplateProps) => {
 
-  // Definimos las filas del 5 al 1 (eje Y) tal como en tu imagen
   const nivelesEjeY = [5, 4, 3, 2, 1];
-  // Definimos las columnas del 1 al 5 (eje X)
   const nivelesEjeX = [1, 2, 3, 4, 5];
 
-  // Función para determinar el color de la celda basado estrictamente en tu imagen
   const obtenerColorCelda = (probabilidad: number, impacto: number) => {
     const riesgo = probabilidad * impacto;
+    if (probabilidad === 5 && impacto === 1) return 'bg-yellow-300 text-black';
+    if (probabilidad === 1 && impacto === 5) return 'bg-yellow-300 text-black';
 
-    // Casos especiales donde el producto no define el color exacto de la imagen
-    if (probabilidad === 5 && impacto === 1) return 'bg-yellow-300 text-black'; // Riesgo 5 (Amarillo)
-    if (probabilidad === 1 && impacto === 5) return 'bg-yellow-300 text-black'; // Riesgo 5 (Amarillo)
-
-    // Rangos estándar basados en tu mapa de colores
-    if (riesgo >= 20) return 'bg-red-500 text-white';        // Muy Alto (Rojo)
-    if (riesgo >= 10) return 'bg-amber-400 text-white';     // Alto (Naranja)
-    if (riesgo >= 5)  return 'bg-yellow-300 text-black';     // Medio (Amarillo)
-    return 'bg-emerald-500 text-white';                      // Bajo (Verde)
+    if (riesgo >= 20) return 'bg-rose-500 text-white';        // Muy Alto
+    if (riesgo >= 10) return 'bg-amber-400 text-white';       // Alto
+    if (riesgo >= 5)  return 'bg-yellow-300 text-black';      // Medio
+    return 'bg-emerald-500 text-white';                       // Bajo
   };
 
   return (
     <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm max-w-xl mx-auto">
       {nombreAmenaza && (
-        <div className="mb-4 text-center">
+        <div className="mb-6 text-center">
           <span className="text-xs font-semibold uppercase tracking-wider text-cyan-700 bg-blue-50 px-2.5 py-1 rounded-full">
-            Ubicación de Riesgo
+            Mapa de Mitigación de Riesgo
           </span>
-          <h4 className="text-gray-800 font-bold text-lg mt-1 truncate">{nombreAmenaza}</h4>
+          <h4 className="text-gray-800 font-bold text-lg mt-2 truncate">{nombreAmenaza}</h4>
         </div>
       )}
 
+      {/* Leyenda de marcadores */}
+      <div className="flex justify-center gap-6 mb-4 text-xs font-semibold">
+        <div className="flex items-center gap-2">
+          <span className="px-1.5 py-0.5 rounded bg-blue-600 text-white border border-blue-700 shadow-sm">RI</span>
+          <span className="text-gray-600">Riesgo Inherente</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="px-1.5 py-0.5 rounded bg-purple-600 text-white border border-purple-700 shadow-sm">RR</span>
+          <span className="text-gray-600">Riesgo Residual</span>
+        </div>
+      </div>
+
       <div className="flex">
-        {/* Etiqueta Eje Y (PROBABILIDAD) */}
+        {/* Eje Y (PROBABILIDAD) */}
         <div className="flex items-center justify-center pr-2">
-          <p className="text-xs font-bold text-gray-500 uppercase tracking-widest [writing-mode:vertical-lr] rotate-180">
+          <p className="text-xs font-bold text-gray-400 uppercase tracking-widest [writing-mode:vertical-lr] rotate-180">
             Probabilidad
           </p>
         </div>
 
         <div className="flex-1">
-          {/* Grid de la Matriz (5 filas principales + 1 para etiquetas del eje X) */}
           <div className="grid grid-cols-[auto_1fr_1fr_1fr_1fr_1fr] gap-1.5 items-center">
             
-            {/* Iteramos sobre las filas (Probabilidad) de arriba a abajo (5 a 1) */}
             {nivelesEjeY.map((prob) => (
               <Fragment key={`fila-${prob}`}>
-                {/* Indicador numérico izquierdo de la fila */}
-                <div className="text-right pr-2 text-sm font-bold text-gray-500 w-6">
+                <div className="text-right pr-2 text-sm font-bold text-gray-400 w-6">
                   {prob}
                 </div>
 
-                {/* Iteramos sobre las columnas (Impacto) de izquierda a derecha (1 a 5) */}
                 {nivelesEjeX.map((imp) => {
                   const valorRiesgo = prob * imp;
-                  const esCeldaActiva = probabilidadSeleccionada === prob && impactoSeleccionado === imp;
+                  
+                  // Evaluamos las posiciones de ambos riesgos
+                  const esInherent = probInh === prob && impInh === imp;
+                  const esResidual = probRes === prob && impRes === imp;
 
                   return (
                     <div
                       key={`celda-${prob}-${imp}`}
-                      className={`relative aspect-video flex items-center justify-center font-bold text-base rounded border border-black/10 shadow-sm select-none transition-all ${obtenerColorCelda(prob, imp)}`}
+                      className={`relative aspect-video flex items-center justify-center font-bold text-lg rounded border border-black/5 shadow-sm select-none transition-all ${obtenerColorCelda(prob, imp)}`}
                     >
-                      {/* Valor numérico del riesgo de fondo */}
-                      <span>{valorRiesgo}</span>
+                      {/* Puntuación base */}
+                      <span className="opacity-40 text-sm">{valorRiesgo}</span>
 
-                      {/* MARCADOR DINÁMICO (Si coincide con los parámetros recibidos) */}
-                      {esCeldaActiva && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/20 rounded">
-                          {/* Anillo exterior con animación de pulso */}
-                          <span className="animate-ping absolute inline-flex h-8 w-8 rounded-full bg-white opacity-75"></span>
-                          {/* Círculo indicador central */}
-                          <span className="relative inline-flex rounded-full h-6 w-6 bg-white text-gray-900 text-xs items-center justify-center shadow-md font-extrabold border-2 border-teal-600">
-                            X
-                          </span>
+                      {/* CASO 1: Coinciden en el mismo cuadrante (No hubo mitigación efectiva en cuadrantes) */}
+                      {esInherent && esResidual && (
+                        <div className="absolute inset-1 flex items-center justify-center bg-indigo-700 text-white text-[11px] font-black rounded border border-white shadow-md animate-pulse">
+                          RI + RR
                         </div>
+                      )}
+
+                      {/* CASO 2: Solo Riesgo Inherente */}
+                      {esInherent && !esResidual && (
+                        <span className="absolute top-1 left-1 px-1.5 py-0.5 text-[10px] font-black rounded bg-blue-600 text-white border border-white shadow-md">
+                          RI
+                        </span>
+                      )}
+
+                      {/* CASO 3: Solo Riesgo Residual */}
+                      {esResidual && !esInherent && (
+                        <span className="absolute bottom-1 right-1 px-1.5 py-0.5 text-[10px] font-black rounded bg-purple-600 text-white border border-white shadow-md">
+                          RR
+                        </span>
                       )}
                     </div>
                   );
@@ -94,18 +112,17 @@ export const MatrixTemplate = ({
               </Fragment>
             ))}
 
-            {/* Fila inferior: Espacio vacío de esquina + Números del Eje X (Impacto) */}
-            <div></div> {/* Esquina inferior izquierda */}
+            {/* Eje X (Impacto) */}
+            <div></div>
             {nivelesEjeX.map((imp) => (
-              <div key={`etiqueta-x-${imp}`} className="text-center pt-2 text-sm font-bold text-gray-500">
+              <div key={`etiqueta-x-${imp}`} className="text-center pt-2 text-sm font-bold text-gray-400">
                 {imp}
               </div>
             ))}
           </div>
 
-          {/* Etiqueta Eje X (IMPACTO) */}
           <div className="text-center pt-3">
-            <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">
+            <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">
               Impacto
             </p>
           </div>
