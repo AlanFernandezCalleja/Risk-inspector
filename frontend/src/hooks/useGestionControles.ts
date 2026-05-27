@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { type ControlData } from "../models/ControlData";
 import { useControles } from "./useControles";
-
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 export const useGestionControles = () => {
   const { controles, cargando, error, recargarControles } = useControles();
 

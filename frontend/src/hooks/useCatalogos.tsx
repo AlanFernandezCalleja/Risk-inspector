@@ -1,5 +1,6 @@
 // src/hooks/useCatalogos.ts
 import { useState, useEffect } from 'react';
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 export const useCatalogos = () => {
   const [tipos, setTipos] = useState<{id: number, nombre: string}[]>([]);
@@ -12,9 +13,9 @@ export const useCatalogos = () => {
       try {
         // Ejecutamos las 3 peticiones en paralelo para que sea más rápido
         const [resTipos, resNiveles, resFrecuencias] = await Promise.all([
-          fetch('http://localhost:3000/catalogos/tipos'),
-          fetch('http://localhost:3000/catalogos/niveles'),
-          fetch('http://localhost:3000/catalogos/frecuencias')
+          fetch(`${API_URL}/catalogos/tipos`),
+          fetch(`${API_URL}/catalogos/niveles`),
+          fetch(`${API_URL}/catalogos/frecuencias`)
         ]);
 
         const [dataTipos, dataNiveles, dataFrecuencias] = await Promise.all([

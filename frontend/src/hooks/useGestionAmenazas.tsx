@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { type AmenazaData } from "../models/AmenazaData";
 import { useAmenazas } from "./useAmenazas";
-
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 export const useGestionAmenazas = () => {
   const { amenazas, cargando, error, recargarAmenazas } = useAmenazas();
 
@@ -19,8 +19,8 @@ export const useGestionAmenazas = () => {
   const guardarAmenaza = async (datos: any) => {
     try {
       const url = amenazaSeleccionada 
-        ? `http://localhost:3000/amenazas/editar/${amenazaSeleccionada.id}`
-        : `http://localhost:3000/amenazas/crear`;
+        ? `${API_URL}/amenazas/editar/${amenazaSeleccionada.id}`
+        : `${API_URL}/amenazas/crear`;
         
       const method = amenazaSeleccionada ? 'PUT' : 'POST';
 
@@ -46,7 +46,7 @@ export const useGestionAmenazas = () => {
   const confirmarEliminar = async () => {
     if (idAmenazaAEliminar !== null) {
       try {
-        await fetch(`http://localhost:3000/amenazas/eliminar/${idAmenazaAEliminar}`, { method: 'DELETE' });
+        await fetch(`${API_URL}/amenazas/eliminar/${idAmenazaAEliminar}`, { method: 'DELETE' });
         await recargarAmenazas();
       } catch (err) {
         console.error("Error al eliminar amenaza", err);

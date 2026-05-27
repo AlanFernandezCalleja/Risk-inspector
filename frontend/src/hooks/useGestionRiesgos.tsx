@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useRiesgos } from "./useRiesgos";
 import { type RiesgoCompletoData } from "../models/RiesgoCopletoData";
-
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 export const useGestionRiesgos = () => {
   const { riesgos, cargando, error, recargarRiesgos } = useRiesgos();
 
@@ -19,8 +19,8 @@ export const useGestionRiesgos = () => {
   const guardarRiesgo = async (datos: any) => {
     try {
       const url = riesgoSeleccionado 
-        ? `http://localhost:3000/riesgos/editar/${riesgoSeleccionado.idRiesgo}`
-        : `http://localhost:3000/riesgos/crear`;
+        ? `${API_URL}/riesgos/editar/${riesgoSeleccionado.idRiesgo}`
+        : `${API_URL}/riesgos/crear`;
         
       const method = riesgoSeleccionado ? 'PUT' : 'POST';
 
@@ -46,7 +46,7 @@ export const useGestionRiesgos = () => {
   const confirmarEliminar = async () => {
     if (idRiesgoAEliminar !== null) {
       try {
-        await fetch(`http://localhost:3000/riesgos/eliminar/${idRiesgoAEliminar}`, { method: 'DELETE' });
+        await fetch(`${API_URL}/riesgos/eliminar/${idRiesgoAEliminar}`, { method: 'DELETE' });
         await recargarRiesgos();
       } catch (err) {
         console.error("Error al eliminar riesgo", err);
