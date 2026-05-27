@@ -2,15 +2,23 @@
 // valores
 // frontend/src/components/elementos/navigation/Sidebar.tsx
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { LogOut } from 'lucide-react';
 
 export const Sidebar = () => {
+  const navigate = useNavigate();
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
       isActive 
         ? 'bg-cyan-200 text-sky-800' 
         : 'text-gray-100 hover:bg-cyan-100/90 hover:text-teal-900'
     }`;
+
+  const handleLogout = () => {
+    localStorage.removeItem('isAuthenticated');
+    localStorage.removeItem('userEmail');
+    navigate('/login');
+  };
 
   return (
     <aside className="w-74 bg-cyan-800 border-r border-gray-200 flex flex-col justify-between h-full">
@@ -30,8 +38,17 @@ export const Sidebar = () => {
         </nav>
       </div>
       
-      <div className="p-4 border-t border-cyan-400 text-xs text-cyan-300">
-        v1.0.0 — Risk Inspector
+      <div className="p-4 border-t border-cyan-400">
+        <button
+          onClick={handleLogout}
+          className="w-full flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg text-rose-200 hover:bg-rose-500/20 hover:text-white transition-colors text-left"
+        >
+          <LogOut size={16} />
+          Cerrar Sesión
+        </button>
+        <div className="mt-4 text-xs text-cyan-300">
+          v1.0.0 — Risk Inspector
+        </div>
       </div>
     </aside>
   );
