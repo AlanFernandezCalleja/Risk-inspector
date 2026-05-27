@@ -73,5 +73,16 @@ export const AmenazasController = {
                 error: error.message || 'Error al editar la amenaza'
             });
         }
-    }
+    },
+        async crearAmenaza(req: Request, res: Response, next: NextFunction) {
+            try {
+                const nuevaAmenaza = await AmenazasService.crearAmenaza(req.body);
+                return res.status(201).json({
+                    mensaje: 'Amenaza creada exitosamente',
+                    data: nuevaAmenaza
+                });
+            } catch (error: any) {
+                return res.status(400).json({ error: error.message || 'Error al crear amenaza' });
+            }
+        },
 } 

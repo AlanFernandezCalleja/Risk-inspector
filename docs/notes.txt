@@ -76,3 +76,23 @@ Para que tu frontend se conecte a esa nueva URL en producción, ya no tendrás q
 Key: VITE_API_URL
 
 Value: https://risk-inspector-api.vercel.app
+
+
+
+Coneccion entre frontend y backend:
+
+Conexion React Conexión Backend Frontend matriz riesgos
+
+💡 Nota para cuando conectes tu Frontend (React):
+Cuando vayas a crear o editar un riesgo desde tu formulario de React y hagas el fetch (o axios), asegúrate de que el body de tu petición JSON tenga esta estructura:
+
+FORMATO formato para el formulario de react para riesgos_controles riesgos Riesgo:
+FORMATO JSON
+{
+  "amenaza_id": 5,
+  "tratamiento_id": 2,
+  "probabilidad_residual": 2,
+  "impacto_residual": 3,
+  "controlesIds": [12, 15, 8] 
+}
+El arreglo "controlesIds" es la clave para que el controlador lo atrape y el servicio haga la magia en la tabla riesgos_controles

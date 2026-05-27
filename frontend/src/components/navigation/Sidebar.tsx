@@ -13,7 +13,7 @@ export const Sidebar = () => {
     }`;
 
   return (
-    <aside className="w-64 bg-cyan-800 border-r border-gray-200 flex flex-col justify-between h-full">
+    <aside className="w-74 bg-cyan-800 border-r border-gray-200 flex flex-col justify-between h-full">
       <div className="px-4 py-6">
         {/* Logo */}
         <div className="flex items-center gap-2 px-2 mb-8">

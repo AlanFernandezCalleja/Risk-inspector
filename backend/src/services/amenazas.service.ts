@@ -48,7 +48,7 @@ export const AmenazasService = {
           nombre,
           descripcion_activo
         )
-      `).eq('id', id);
+      `).eq('id', id).single();
 
     if (error) {
       throw new Error(`Error al editar amenaza: ${error.message}`);
@@ -70,7 +70,7 @@ export const AmenazasService = {
       .from('amenazas')
       .update(datos)
       .eq('id', id)
-      .select();
+      .select().single();
 
     if (error) {
       throw new Error(`Error al editar amenaza: ${error.message}`);
@@ -89,5 +89,26 @@ export const AmenazasService = {
       throw new Error(`Error al eliminar amenaza: ${error.message}`);
     }
     return true;
-  }
+  },
+  // POST: Crear una nueva amenaza
+  async crearAmenaza(datos: {
+    activo_id: number;
+    amenaza: string;
+    descripcion_amenaza: string;
+    consecuencia: string;
+    descripcion_consecuencia: string;
+    probabilidad: number;
+    impacto: number;
+  }) {
+    const { data, error } = await supabase
+      .from('amenazas')
+      .insert([datos]) // Supabase espera un arreglo para el insert
+      .select()
+      .single();
+
+    if (error) {
+      throw new Error(`Error al crear amenaza: ${error.message}`);
+    }
+    return data;
+  },
 };

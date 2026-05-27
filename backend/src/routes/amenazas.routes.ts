@@ -21,4 +21,6 @@ router.put('/amenazas/editar/:id', AmenazasController.editarAmenaza);
 // Endpoint para eliminar una amenaza por id
 router.delete('/amenazas/eliminar/:id', AmenazasController.eliminarAmenaza);
 
+router.post('/amenazas/crear', AmenazasController.crearAmenaza);
+
 export default router;
