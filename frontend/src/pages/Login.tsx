@@ -11,14 +11,9 @@ export const Login = () => {
   const [error, setError] = useState<string | null>(null);
   
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
-  // Credenciales hardcodeadas
-  const CREDENCIALES_DEMO = {
-    email: 'admin@riskinspector.com',
-    password: 'admin123'
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
@@ -36,17 +31,32 @@ export const Login = () => {
 
     setCargando(true);
 
-    // Simular retraso de red de 800ms para una experiencia de carga más fluida
-    setTimeout(() => {
-      if (email === CREDENCIALES_DEMO.email && password === CREDENCIALES_DEMO.password) {
-        localStorage.setItem('isAuthenticated', 'true');
-        localStorage.setItem('userEmail', email);
-        navigate('/dashboard/general');
-      } else {
-        setError('Credenciales incorrectas. Inténtalo de nuevo.');
+    try {
+      const respuesta = await fetch(`${API_URL}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ correo: email, contrasena: password })
+      });
+
+      const datos = await respuesta.json();
+
+      if (!respuesta.ok) {
+        setError(datos.error || 'Credenciales incorrectas. Inténtalo de nuevo.');
         setCargando(false);
+        return;
       }
-    }, 800);
+
+      // Login exitoso — guardar datos del usuario autenticado
+      localStorage.setItem('isAuthenticated', 'true');
+      localStorage.setItem('userEmail', datos.usuario.correo);
+      localStorage.setItem('userName', datos.usuario.nombre_completo);
+      localStorage.setItem('userRol', datos.usuario.rol || '');
+      navigate('/dashboard/general');
+
+    } catch (err) {
+      setError('No se pudo conectar con el servidor. Verifica que el backend esté corriendo.');
+      setCargando(false);
+    }
   };
 
   return (
@@ -147,13 +157,12 @@ export const Login = () => {
             </Boton>
           </form>
 
-          {/* Caja Informativa con Credenciales Demo */}
+          {/* Caja Informativa */}
           <div className="mt-8 p-3.5 bg-blue-50 border border-blue-100 rounded-xl flex items-start gap-2.5">
             <Info className="h-5 w-5 text-blue-500 shrink-0 mt-0.5" />
             <div className="text-xs text-blue-800 leading-relaxed">
-              <span className="font-semibold block mb-0.5">Acceso Demo de Prueba:</span>
-              <p>Email: <code className="bg-blue-100 px-1 py-0.5 rounded font-mono font-semibold">admin@riskinspector.com</code></p>
-              <p>Contraseña: <code className="bg-blue-100 px-1 py-0.5 rounded font-mono font-semibold">admin123</code></p>
+              <span className="font-semibold block mb-0.5">Información:</span>
+              <p>Ingresa con las credenciales de tu cuenta de usuario registrada en el sistema.</p>
             </div>
           </div>
         </div>

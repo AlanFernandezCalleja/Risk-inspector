@@ -10,6 +10,7 @@ import rutasAmenazas from './src/routes/amenazas.routes.js';
 import rutasControles from './src/routes/controles.routes.js';
 import rutasCatalogo from './src/routes/catalogos.routes.js'
 
+import rutasAuth from './src/routes/auth.routes.js';
 dotenv.config();
 
 const app = express();
@@ -25,6 +26,8 @@ app.use(rutasPrioridades);
 app.use(rutasRiesgos);
 app.use(rutasAmenazas);
 app.use(rutasControles);
+app.use(rutasRiesgos)
+app.use(rutasAuth);
 
 // El manejador de errores siempre debe ir al final
 app.use(errorHandler);
