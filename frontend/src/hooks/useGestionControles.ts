@@ -19,8 +19,8 @@ export const useGestionControles = () => {
   const guardarControl = async (datos: any) => {
     try {
       const url = controlSeleccionado 
-        ? `http://localhost:3000/controles/editar/${controlSeleccionado.id}`
-        : `http://localhost:3000/controles/crear`;
+        ? `${API_URL}/controles/editar/${controlSeleccionado.id}`
+        : `${API_URL}/controles/crear`;
         
       const method = controlSeleccionado ? 'PUT' : 'POST';
 
@@ -46,7 +46,7 @@ export const useGestionControles = () => {
   const confirmarEliminar = async () => {
     if (idControlAEliminar !== null) {
       try {
-        await fetch(`http://localhost:3000/controles/eliminar/${idControlAEliminar}`, { method: 'DELETE' });
+        await fetch(`${API_URL}/controles/eliminar/${idControlAEliminar}`, { method: 'DELETE' });
         await recargarControles();
       } catch (err) {
         console.error("Error al eliminar", err);
