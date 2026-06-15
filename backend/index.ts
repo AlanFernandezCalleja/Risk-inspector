@@ -20,14 +20,14 @@ app.use(cors());
 app.use(express.json());
 
 // Endpoints agrupados y limpios
-app.use(rutasCatalogo);
-app.use(rutasActivos);
-app.use(rutasPrioridades);
-app.use(rutasRiesgos);
-app.use(rutasAmenazas);
-app.use(rutasControles);
-app.use(rutasRiesgos)
-app.use(rutasAuth);
+app.use('/api', rutasCatalogo);
+app.use('/api', rutasActivos);
+app.use('/api', rutasPrioridades);
+app.use('/api', rutasRiesgos);
+app.use('/api', rutasAmenazas);
+app.use('/api', rutasControles);
+app.use('/api', rutasRiesgos);
+app.use('/api', rutasAuth);
 
 // El manejador de errores siempre debe ir al final
 app.use(errorHandler);
